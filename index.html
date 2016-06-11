@@ -35,10 +35,26 @@
 
     var targetVertex;
     var targetList = [];
+    var text;
+
+    var addText = function() {
+      var TextGeometry = new THREE.TextGeometry('Three.js!', {
+        size: 10,
+        height: 1,
+        curveSegments: 10,
+        font: "helvetiker",
+        weight: "normal"
+      });
+      var Material = new THREE.MeshLambertMaterial({
+        color: 0x00ff00
+      });
+
+      return new THREE.Mesh(TextGeometry, Material);
+    }
+
 
     initScene();
     animate();
-    addText();
 
     function initScene() {
       renderer = new THREE.WebGLRenderer();
@@ -65,29 +81,20 @@
       var helper = new THREE.AxisHelper(100);
       scene.add(helper);
       helper.position.set(0, 0, 0);
+
+      //text
+      text = addText();
+      scene.add(text);
     }
 
-    function addText() {
-      var TextGeometry = new THREE.TextGeometry('Three.js!', {
-        size: 10,
-        height: 4,
-        curveSegments: 3,
-        font: "helvetiker",
-        weight: "normal"
-      });
-      var Material = new THREE.MeshLambertMaterial({
-        color: 0x00ff00
-      });
-      var Text = new THREE.Mesh(TextGeometry, Material);
-
-      scene.add(Text);
-    }
 
 
     function animate() {
       var timer = Date.now();
       requestAnimationFrame(animate);
       camera.lookAt(scene.position);
+
+      text.rotation.setFromRotationMatrix(camera.matrix);
 
       renderer.render(scene, camera);
     }
