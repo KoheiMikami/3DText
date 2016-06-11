@@ -1,0 +1,20 @@
+{
+  "name": "3dText",
+  "authors": [
+    "KoheiMikami <nyatamon@gmail.com>"
+  ],
+  "description": "",
+  "main": "",
+  "license": "MIT",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "three.js": "threejs#r74"
+  }
+}
